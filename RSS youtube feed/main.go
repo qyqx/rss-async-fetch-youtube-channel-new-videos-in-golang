@@ -338,6 +338,11 @@ func parseArgs(fileWithUnixTimeName string, fi string, fileWithUnixTimeAppendNam
 		_, err, pageData := communicateGettingHtmlPage(urlToGetRss)
 		if err != nil {
 			fmt.Println("communicateGettingHtmlPage("+urlToGetRss+") failed because:", err.Error())
+			os.Exit(1)
+		}
+		if len(strings.Split(pageData, "\"channelId\":\"")) < 2 {
+			fmt.Println("got html page from "+urlToGetRss+" but it does not have channelId:")
+			os.Exit(1)
 		}
 		channelId := strings.Split(pageData, "\"channelId\":\"")[1]
 		channelId = strings.Split(channelId, "\"")[0]
