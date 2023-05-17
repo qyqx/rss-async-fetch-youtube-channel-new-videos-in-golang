@@ -2,8 +2,6 @@ package xmlFormats
 
 import (
 	"encoding/xml"
-	"io/ioutil"
-	"net/http"
 )
 
 // OPML is the root node of an OPML document. It only has a single required
@@ -53,52 +51,4 @@ type Outline struct {
 	Title        string    `xml:"title,attr,omitempty"`
 	Version      string    `xml:"version,attr,omitempty"`
 	Description  string    `xml:"description,attr,omitempty"`
-}
-
-// NewOPML creates a new OPML structure from a slice of bytes.
-func NewOPML(b []byte) (*OPML, error) {
-	var root OPML
-	err := xml.Unmarshal(b, &root)
-	if err != nil {
-		return nil, err
-	}
-
-	return &root, nil
-}
-
-// NewOPMLFromURL creates a new OPML structure from an URL.
-func NewOPMLFromURL(url string) (*OPML, error) {
-	resp, err := http.Get(url)
-	if err != nil {
-		return nil, err
-	}
-	defer resp.Body.Close()
-
-	b, err := ioutil.ReadAll(resp.Body)
-	if err != nil {
-		return nil, err
-	}
-
-	return NewOPML(b)
-}
-
-// NewOPMLFromFile creates a new OPML structure from a file.
-func NewOPMLFromFile(filePath string) (*OPML, error) {
-	b, err := ioutil.ReadFile(filePath)
-	if err != nil {
-		return nil, err
-	}
-
-	return NewOPML(b)
-}
-
-// Outlines returns a slice of the outlines.
-func (doc OPML) Outlines() []Outline {
-	return doc.Body.Outlines
-}
-
-// XML exports the OPML document to a XML string.
-func (doc OPML) XML() (string, error) {
-	b, err := xml.MarshalIndent(doc, "", "\t")
-	return xml.Header + string(b), err
 }
