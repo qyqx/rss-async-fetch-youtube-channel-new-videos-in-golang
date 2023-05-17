@@ -1,0 +1,15 @@
+<opml version="1.1">
+  <head>
+    <title>FeedDemon Subscriptions</title>
+    <dateModified>Thu, 15 May 2023 19:04:59 GMT</dateModified>
+  </head>
+  <body>
+    <outline text="Group1">
+      <outline text="Bisqwit" type="rss" xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UCKTehwyGCKF-b2wo0RKwrcg" htmlUrl="https://www.youtube.com/channel/UCKTehwyGCKF-b2wo0RKwrcg" title="Bisqwit"></outline>
+	  <outline text="MollyRocket" type="rss" xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UC-P3YszdA4W9Va7oblY06Tw" htmlUrl="https://www.youtube.com/@MollyRocket" title="MollyRocket"></outline>
+    </outline>
+    <outline text="Group2">
+      <outline text="PewDiePie" type="rss" xmlUrl="https://www.youtube.com/feeds/videos.xml?channel_id=UCQ4zIVlfhsmvds7WuKeL2Bw" htmlUrl="https://www.youtube.com/channel/UC-lHJZR3Gqxm24_Vd_AJ5Yw" title="PewDiePie"></outline>
+    </outline>
+  </body>
+</opml>
