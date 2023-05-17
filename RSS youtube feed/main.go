@@ -590,6 +590,12 @@ func addToOpml(opmlFileName string, addXmlLinkToRss string, addNameToOpml string
 	}
 	
 	var outlineWithNewUrl xmlFormats.Outline = xmlFormats.Outline{ Text:addNameToOpml, Title:addNameToOpml, Type:"rss", XMLURL:addXmlLinkToRss, HTMLURL:urlToSaveToOpml }
+	
+	for lineIndx, line:= range xmlData.Body.Outlines[len(xmlData.Body.Outlines)-1].Outlines {
+		if outlineWithNewUrl.XMLURL == line.XMLURL {
+			return errors.New("Feed already exists on line "+strconv.Itoa(lineIndx+1))
+		}
+	}
 	// change xmlData.Body.Outlines by chaning last Outline in its Outlines array so that its Outlines has outlineWithNewUrl added to it
 	xmlData.Body.Outlines[len(xmlData.Body.Outlines)-1].Outlines = append(xmlData.Body.Outlines[len(xmlData.Body.Outlines)-1].Outlines, outlineWithNewUrl)
 	
