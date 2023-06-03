@@ -32,8 +32,7 @@ var httpClientConfInstance HttpClientConf
 func getHttpClient() http.Client {
 	if httpClientConfInstance.httpClient == nil {
 		httpClientConfInstance = *new(HttpClientConf)
-		conf := getTLS()
-		httpClientConfInstance.httpClient = &http.Client{ Timeout: 60 * time.Second, Transport: &http.Transport{TLSClientConfig: conf} }
+		httpClientConfInstance.httpClient = &http.Client{ Timeout: 60 * time.Second, Transport: &http.Transport{TLSClientConfig: getTLS()} }
 	}
 	return *(httpClientConfInstance.httpClient)
 }
